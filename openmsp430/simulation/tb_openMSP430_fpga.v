@@ -144,6 +144,15 @@ reg               stimulus_done;
 // CPU & Memory registers
 //`include "registers.v"
 
+
+// testing variable bit select
+wire [31:0] test_vector = 32'h00ffee00;
+
+parameter id_sp_lim = 16;
+wire [15:0] id_sp = 31;
+
+wire [15:0] test_result = test_vector[id_sp -: id_sp_lim];
+
 // GPIO
 wire         [7:0] p3_din = dut.p3_din;
 wire         [7:0] p3_dout = dut.p3_dout;
@@ -226,9 +235,29 @@ initial
   end
 
 //
+// Simulate power supply
+//----------------------------------
+parameter V_MAX = 32'h1000000;
+parameter V_RATE = 32'h00008000;
+reg [31:0] V_supply;
+initial
+begin
+   V_supply <= V_MAX; // full battery
+end
+
+always @(posedge dut.openMSP430_0.dica_0.clk)
+begin
+  if(V_supply <= V_RATE && dut.openMSP430_0.dica_0.irq_chkpnt && dut.openMSP430_0.dica_0.irq)
+      V_supply <= V_MAX;
+  else if (V_supply <= V_RATE)
+      V_supply <= 0;
+  else
+    V_supply <= V_supply - V_RATE;
+end
+
+//
 // openMSP430 FPGA Instance
 //----------------------------------
-
 openMSP430_fpga dut (
 
 // Clock Sources
@@ -251,6 +280,8 @@ openMSP430_fpga dut (
     .BTN1         (BTN1),
     .BTN0         (BTN0),
     
+    .V_supply     (V_supply),
+
 // RS-232 Port
     .UART_RXD     (UART_RXD),
     .UART_TXD     (UART_TXD),  

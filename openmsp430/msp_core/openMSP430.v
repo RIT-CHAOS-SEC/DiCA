@@ -79,8 +79,11 @@ module  openMSP430 (
     smclk_en,                                // FPGA ONLY: SMCLK enable
 
     irq_chkpnt,
+    dtable_idx,
+    dtable_write,
 
 // INPUTs
+    V_supply,
     lambda,
     dica_reset,
 
@@ -148,10 +151,13 @@ output               smclk;                  // ASIC ONLY: SMCLK
 output               smclk_en;               // FPGA ONLY: SMCLK enable
 
 output               irq_chkpnt;
+output        [15:0] dtable_idx;
+output               dtable_write;
 
 // INPUTs
 //============
 input          [30:0] lambda;
+input          [31:0] V_supply;
 input                 dica_reset;
 input                cpu_en;                 // Enable CPU code execution (asynchronous and non-glitchy)
 input                dbg_en;                 // Debug interface enable (asynchronous and non-glitchy)
@@ -284,13 +290,16 @@ wire                 irq_detect;
 //=============================================================================
 // DICA --- DTABLE MODULE
 //=============================================================================
-parameter BLK_SIZE = 128; // Memory size in bytes
+parameter BLK_SIZE = 256; // Memory size in bytes
 parameter BLK_MSB  = $clog2(BLK_SIZE);    // MSB of block
 parameter TOTAL_BLOCKS = `DMEM_SIZE >> BLK_MSB;
 wire [(TOTAL_BLOCKS-1):0] D_table;
 wire irq_chkpnt;
-wire [31:0] V_supply = 32'h200;
-dica dica_0(
+dica #(
+    .BLK_SIZE    (BLK_SIZE)
+)
+dica_0
+(
     //INPUTS
     .clk        (dma_mclk),
     .data_wr    (|eu_mb_wr),
@@ -305,7 +314,9 @@ dica dica_0(
         
     //OUTPUTS
     .D_Table    (D_Table),
-    .irq_chkpnt (irq_chkpnt)
+    .irq_chkpnt (irq_chkpnt),
+    .dtable_idx (dtable_idx),
+    .dtable_write (dtable_write)
 );
 
 

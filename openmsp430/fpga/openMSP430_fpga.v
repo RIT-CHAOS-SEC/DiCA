@@ -60,6 +60,9 @@ module openMSP430_fpga (
     BTN1,
     BTN0,
 
+// Simulated power supply input
+    V_supply,
+
 // LEDs
     LED8,
     LED7,
@@ -193,6 +196,9 @@ input     BTN2;
 input     BTN1;
 input     BTN0;
 
+// Simulate power
+input     [31:0] V_supply;
+
 // LEDs
 output    LED8;
 output    LED7;
@@ -299,12 +305,17 @@ output      JC7;
 //output    VGA_HS;
 //output    VGA_VS;
 
+// DICA output
+wire [15:0] dtable_idx;
+wire dtable_write;
+
 // dica_memory
 //-----------------------------------------------
 wire [30:0] lambda;
 wire dica_reset;
+wire [15:0] dica_mem_per_dout;
 dica_memory dica_memory_0 (
-    .per_dout      (per_dout),
+    .per_dout      (dica_mem_per_dout),
     .dica_reset    (dica_reset),
     .lambda        (lambda),
     
@@ -316,6 +327,24 @@ dica_memory dica_memory_0 (
     .per_din_chkpnt(per_din),
     .puc_rst       (puc_rst)
 );
+
+// dtable_memory
+//-----------------------------------------------
+wire [15:0] dtable_mem_per_dout;
+dtable_mem dtable_mem_0 (
+    .per_dout (dtable_mem_per_dout),
+
+    .dtable_idx  (dtable_idx),
+    .dtable_write(dtable_write),
+
+    .mclk     (mclk),
+    .per_addr (per_addr),
+    .per_din  (per_din),
+    .per_en   (per_en),
+    .per_we   (per_we),
+    .puc_rst  (puc_rst)
+);
+
 
 
 //=============================================================================
@@ -551,8 +580,11 @@ openMSP430 openMSP430_0 (
     .smclk_en          (smclk_en),     // FPGA ONLY: SMCLK enable
 
     .irq_chkpnt       (irq_chkpnt),
+    .dtable_idx       (dtable_idx),
+    .dtable_write       (dtable_write),
 
 // INPUTs
+    .V_supply          (V_supply),
     .lambda            (lambda),
     .dica_reset        (dica_reset),
     .cpu_en            (1'b1),         // Enable CPU code execution (asynchronous and non-glitchy)
@@ -736,12 +768,13 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 assign per_dout = per_dout_dio  |
                   per_dout_tA   |
                   per_dout_7seg |
-                  per_dout_uart;
+                  per_dout_uart |
+                  dtable_mem_per_dout |
+                  dica_mem_per_dout;
 
-//
+
 // Assign interrupts
 //-------------------------------
-
 assign nmi        =  1'b0;
 assign irq_bus    = {irq_chkpnt,   // Vector 13  (0xFFFA)
                      1'b0,         // Vector 12  (0xFFF8)

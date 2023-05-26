@@ -86,8 +86,8 @@ parameter       [14:0] BASE_ADDR   = 15'h0190;
 parameter              DEC_WD      =  3;
 
 // Register addresses offset
-parameter [DEC_WD-1:0] DICA_CTL_UPPER = 'h0,
-                       DICA_CTL_LOWER = 'h2;
+parameter [DEC_WD-1:0] DICA_CTL_LOWER = 'h0,
+                       DICA_CTL_UPPER = 'h2;
                        //CNTRL3      = 'h4,
                        //CNTRL4      = 'h6;
 
@@ -96,8 +96,8 @@ parameter              DEC_SZ      =  (1 << DEC_WD);
 parameter [DEC_SZ-1:0] BASE_REG    =  {{DEC_SZ-1{1'b0}}, 1'b1};
 
 // Register one-hot decoder
-parameter [DEC_SZ-1:0] CNTRL1_D    = (BASE_REG << DICA_CTL_UPPER),
-                       CNTRL2_D    = (BASE_REG << DICA_CTL_LOWER);
+parameter [DEC_SZ-1:0] CNTRL1_D    = (BASE_REG << DICA_CTL_LOWER),
+                       CNTRL2_D    = (BASE_REG << DICA_CTL_UPPER);
                        //CNTRL3_D    = (BASE_REG << CNTRL3),
                        //CNTRL4_D    = (BASE_REG << CNTRL4);
 
@@ -113,8 +113,8 @@ wire              reg_sel   =  per_en & (per_addr[13:DEC_WD-1]==BASE_ADDR[14:DEC
 wire [DEC_WD-1:0] reg_addr  =  {per_addr[DEC_WD-2:0], 1'b0};
 
 // Register address decode
-wire [DEC_SZ-1:0] reg_dec   =  (CNTRL1_D  &  {DEC_SZ{(reg_addr == DICA_CTL_UPPER )}})  |
-                               (CNTRL2_D  &  {DEC_SZ{(reg_addr == DICA_CTL_LOWER )}});//  |
+wire [DEC_SZ-1:0] reg_dec   =  (CNTRL1_D  &  {DEC_SZ{(reg_addr == DICA_CTL_LOWER )}})  |
+                               (CNTRL2_D  &  {DEC_SZ{(reg_addr == DICA_CTL_UPPER )}});//  |
                                //(CNTRL3_D  &  {DEC_SZ{(reg_addr == CNTRL3 )}})  |
                                //(CNTRL4_D  &  {DEC_SZ{(reg_addr == CNTRL4 )}});
 
@@ -159,15 +159,15 @@ always @ (posedge mclk or posedge puc_rst)
 
 // Data output mux
 wire [15:0] dica_ctl_upper_rd  = dica_ctl_upper  & {16{reg_rd[DICA_CTL_UPPER]}};
-wire [15:0] dica_ctl_lower_rd  = dica_ctl_lower & {16{reg_rd[DICA_CTL_UPPER]}};
+wire [15:0] dica_ctl_lower_rd  = dica_ctl_lower & {16{reg_rd[DICA_CTL_LOWER]}};
 
 wire [15:0] per_dout   =  dica_ctl_upper_rd |  //|
                           dica_ctl_lower_rd;//  |
                           // cntrl3_rd  |
                           // cntrl4_rd;
 
-assign lambda = {dica_ctl_upper, dica_ctl_lower[14:1]};
-assign dica_reset = dica_ctl_upper[0]; 
+assign lambda = {dica_ctl_upper[14:0], dica_ctl_lower};
+assign dica_reset = dica_ctl_upper[15]; 
 
 
 endmodule
