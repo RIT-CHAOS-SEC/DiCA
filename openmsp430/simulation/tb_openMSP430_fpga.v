@@ -50,23 +50,23 @@ module  tb_openMSP430_fpga;
 // CPU registers
 //======================
 
-wire       [15:0] pc    = dut.openMSP430_0.inst_pc;
-wire       [15:0] r0    = dut.openMSP430_0.execution_unit_0.register_file_0.r0;
-wire       [15:0] r1    = dut.openMSP430_0.execution_unit_0.register_file_0.r1;
-wire       [15:0] r2    = dut.openMSP430_0.execution_unit_0.register_file_0.r2;
-wire       [15:0] r3    = dut.openMSP430_0.execution_unit_0.register_file_0.r3;
-wire       [15:0] r4    = dut.openMSP430_0.execution_unit_0.register_file_0.r4;
-wire       [15:0] r5    = dut.openMSP430_0.execution_unit_0.register_file_0.r5;
-wire       [15:0] r6    = dut.openMSP430_0.execution_unit_0.register_file_0.r6;
-wire       [15:0] r7    = dut.openMSP430_0.execution_unit_0.register_file_0.r7;
-wire       [15:0] r8    = dut.openMSP430_0.execution_unit_0.register_file_0.r8;
-wire       [15:0] r9    = dut.openMSP430_0.execution_unit_0.register_file_0.r9;
-wire       [15:0] r10   = dut.openMSP430_0.execution_unit_0.register_file_0.r10;
-wire       [15:0] r11   = dut.openMSP430_0.execution_unit_0.register_file_0.r11;
-wire       [15:0] r12   = dut.openMSP430_0.execution_unit_0.register_file_0.r12;
-wire       [15:0] r13   = dut.openMSP430_0.execution_unit_0.register_file_0.r13;
-wire       [15:0] r14   = dut.openMSP430_0.execution_unit_0.register_file_0.r14;
-wire       [15:0] r15   = dut.openMSP430_0.execution_unit_0.register_file_0.r15;
+//wire       [15:0] pc    = dut.openMSP430_0.pc;
+//wire       [15:0] r0    = dut.openMSP430_0.execution_unit_0.register_file_0.r0;
+//wire       [15:0] r1    = dut.openMSP430_0.execution_unit_0.register_file_0.r1;
+//wire       [15:0] r2    = dut.openMSP430_0.execution_unit_0.register_file_0.r2;
+//wire       [15:0] r3    = dut.openMSP430_0.execution_unit_0.register_file_0.r3;
+//wire       [15:0] r4    = dut.openMSP430_0.execution_unit_0.register_file_0.r4;
+//wire       [15:0] r5    = dut.openMSP430_0.execution_unit_0.register_file_0.r5;
+//wire       [15:0] r6    = dut.openMSP430_0.execution_unit_0.register_file_0.r6;
+//wire       [15:0] r7    = dut.openMSP430_0.execution_unit_0.register_file_0.r7;
+//wire       [15:0] r8    = dut.openMSP430_0.execution_unit_0.register_file_0.r8;
+//wire       [15:0] r9    = dut.openMSP430_0.execution_unit_0.register_file_0.r9;
+//wire       [15:0] r10   = dut.openMSP430_0.execution_unit_0.register_file_0.r10;
+//wire       [15:0] r11   = dut.openMSP430_0.execution_unit_0.register_file_0.r11;
+//wire       [15:0] r12   = dut.openMSP430_0.execution_unit_0.register_file_0.r12;
+//wire       [15:0] r13   = dut.openMSP430_0.execution_unit_0.register_file_0.r13;
+//wire       [15:0] r14   = dut.openMSP430_0.execution_unit_0.register_file_0.r14;
+//wire       [15:0] r15   = dut.openMSP430_0.execution_unit_0.register_file_0.r15;
 
 // Clock & Reset
 reg               CLK_100MHz;
@@ -117,63 +117,63 @@ reg               UART_RXD;
 wire              UART_TXD;
 
 // JB-C
-wire              JB1;
+//wire              JB1;
 wire              JC1;
-wire              JC2;
+//wire              JC2;
 wire              JC7;
 
-// Core debug signals
-wire   [8*32-1:0] i_state;
-wire   [8*32-1:0] e_state;
-wire       [31:0] inst_cycle;
-wire   [8*32-1:0] inst_full;
-wire       [31:0] inst_number;
-wire       [15:0] inst_pc;
-wire   [8*32-1:0] inst_short;
+//// Core debug signals
+//wire   [8*32-1:0] i_state;
+//wire   [8*32-1:0] e_state;
+//wire       [31:0] inst_cycle;
+//wire   [8*32-1:0] inst_full;
+//wire       [31:0] inst_number;
+//wire       [15:0] inst_pc;
+//wire   [8*32-1:0] inst_short;
 
-// Testbench variables
+//// Testbench variables
 integer           i;
 integer           error;
 reg               stimulus_done;
 
 
-//
-// Include files
-//------------------------------
+////
+//// Include files
+////------------------------------
 
-// CPU & Memory registers
-//`include "registers.v"
+//// CPU & Memory registers
+////`include "registers.v"
 
 
-// testing variable bit select
-wire [31:0] test_vector = 32'h00ffee00;
+//// testing variable bit select
+//wire [31:0] test_vector = 32'h00ffee00;
 
-parameter id_sp_lim = 16;
-wire [15:0] id_sp = 31;
+//parameter id_sp_lim = 16;
+//wire [15:0] id_sp = 31;
 
-wire [15:0] test_result = test_vector[id_sp -: id_sp_lim];
+//wire [15:0] test_result = test_vector[id_sp -: id_sp_lim];
 
-// GPIO
-wire         [7:0] p3_din = dut.p3_din;
-wire         [7:0] p3_dout = dut.p3_dout;
-wire         [7:0] p3_dout_en = dut.p3_dout_en;
+//// GPIO
+//wire         [7:0] p3_din = dut.p3_din;
+//wire         [7:0] p3_dout = dut.p3_dout;
+//wire         [7:0] p3_dout_en = dut.p3_dout_en;
 
-wire         [7:0] p1_din = dut.p1_din;
-wire         [7:0] p1_dout = dut.p1_dout;
-wire         [7:0] p1_dout_en = dut.p1_dout_en;
+//wire         [7:0] p1_din = dut.p1_din;
+//wire         [7:0] p1_dout = dut.p1_dout;
+//wire         [7:0] p1_dout_en = dut.p1_dout_en;
 
-// RESET SIGNAL
-wire         puc_rst = dut.puc_rst;
-wire         reset_pin_n = dut.reset_pin_n;
+//// RESET SIGNAL
+//wire         puc_rst = dut.puc_rst;
+//wire         reset_pin_n = dut.reset_pin_n;
 
-//VAPE
-//mclk
+////VAPE
+////mclk
 wire              LED8;
 
-// RAM cells
-//======================
+//// RAM cells
+////======================
 
-wire       [15:0] srom_cen = dut.openMSP430_0.srom_cen;
+//wire       [15:0] srom_cen = dut.openMSP430_0.srom_cen;
 // Verilog stimulus
 //`include "stimulus.v"
 
@@ -234,26 +234,26 @@ initial
      UART_RXD      = 1'b0;  // UART
   end
 
-//
-// Simulate power supply
-//----------------------------------
-parameter V_MAX = 32'h1000000;
-parameter V_RATE = 32'h00008000;
-reg [31:0] V_supply;
-initial
-begin
-   V_supply <= V_MAX; // full battery
-end
+////
+//// Simulate power supply
+////----------------------------------
+//parameter V_MAX = 32'h1000000;
+//parameter V_RATE = 32'h00008000;
+//reg [31:0] V_supply;
+//initial
+//begin
+//   dut.V_supply <= V_MAX; // full battery
+//end
 
-always @(posedge dut.openMSP430_0.dica_0.clk)
-begin
-  if(V_supply <= V_RATE && dut.openMSP430_0.dica_0.irq_chkpnt && dut.openMSP430_0.dica_0.irq)
-      V_supply <= V_MAX;
-  else if (V_supply <= V_RATE)
-      V_supply <= 0;
-  else
-    V_supply <= V_supply - V_RATE;
-end
+//always @(posedge dut.openMSP430_0.dica_0.clk)
+//begin
+//  if(dut.V_supply <= V_RATE && dut.openMSP430_0.dica_0.irq_chkpnt && dut.openMSP430_0.dica_0.irq)
+//      dut.V_supply <= V_MAX;
+//  else if (dut.V_supply <= V_RATE)
+//      dut.V_supply <= 0;
+//  else
+//    dut.V_supply <= V_supply - V_RATE;
+//end
 
 //
 // openMSP430 FPGA Instance
@@ -280,7 +280,7 @@ openMSP430_fpga dut (
     .BTN1         (BTN1),
     .BTN0         (BTN0),
     
-    .V_supply     (V_supply),
+//    .V_supply     (V_supply),
 
 // RS-232 Port
     .UART_RXD     (UART_RXD),
@@ -300,9 +300,9 @@ openMSP430_fpga dut (
     
     // JB-C
 //    .JB1          (JB1),
-//    .JC1          (JC1),
+    .JC1          (JC1),
 //    .JC2          (JC2),
-//    .JC7          (JC7),
+    .JC7          (JC7),
 
 // Four-Sigit, Seven-Segment LED Display
     .SEG_A        (SEG_A),
@@ -386,7 +386,7 @@ initial // Timeout
 */
 initial // Normal end of test
   begin
-     @(inst_pc===16'hffff)
+     @(dut.openMSP430_0.pc===16'hffff)
      $display(" ===============================================");
      if (error!=0)
        begin

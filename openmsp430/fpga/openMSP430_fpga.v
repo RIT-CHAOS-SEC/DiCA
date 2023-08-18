@@ -61,7 +61,7 @@ module openMSP430_fpga (
     BTN0,
 
 // Simulated power supply input
-    V_supply,
+    // V_supply,
 
 // LEDs
     LED8,
@@ -197,7 +197,7 @@ input     BTN1;
 input     BTN0;
 
 // Simulate power
-input     [31:0] V_supply;
+// input     [31:0] V_supply;
 
 // LEDs
 output    LED8;
@@ -741,24 +741,24 @@ driver_7segment driver_7segment_0 (
 // Simple full duplex UART (8N1 protocol)
 //----------------------------------------
 
-omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
+// omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 
-// OUTPUTs
-    .irq_uart_rx  (irq_uart_rx),   // UART receive interrupt
-    .irq_uart_tx  (irq_uart_tx),   // UART transmit interrupt
-    .per_dout     (per_dout_uart), // Peripheral data output
-    .uart_txd     (hw_uart_txd),   // UART Data Transmit (TXD)
+// // OUTPUTs
+//     .irq_uart_rx  (irq_uart_rx),   // UART receive interrupt
+//     .irq_uart_tx  (irq_uart_tx),   // UART transmit interrupt
+//     .per_dout     (per_dout_uart), // Peripheral data output
+//     .uart_txd     (hw_uart_txd),   // UART Data Transmit (TXD)
 
-// INPUTs
-    .mclk         (mclk),          // Main system clock
-    .per_addr     (per_addr),      // Peripheral address
-    .per_din      (per_din),       // Peripheral data input
-    .per_en       (per_en),        // Peripheral enable (high active)
-    .per_we       (per_we),        // Peripheral write enable (high active)
-    .puc_rst      (puc_rst),       // Main system reset
-    .smclk_en     (smclk_en),      // SMCLK enable (from CPU)
-    .uart_rxd     (hw_uart_rxd)    // UART Data Receive (RXD)
-);
+// // INPUTs
+//     .mclk         (mclk),          // Main system clock
+//     .per_addr     (per_addr),      // Peripheral address
+//     .per_din      (per_din),       // Peripheral data input
+//     .per_en       (per_en),        // Peripheral enable (high active)
+//     .per_we       (per_we),        // Peripheral write enable (high active)
+//     .puc_rst      (puc_rst),       // Main system reset
+//     .smclk_en     (smclk_en),      // SMCLK enable (from CPU)
+//     .uart_rxd     (hw_uart_rxd)    // UART Data Receive (RXD)
+// );
 
 
 //
@@ -768,7 +768,7 @@ omsp_uart #(.BASE_ADDR(15'h0080)) uart_0 (
 assign per_dout = per_dout_dio  |
                   per_dout_tA   |
                   per_dout_7seg |
-                  per_dout_uart |
+                  // per_dout_uart |
                   dtable_mem_per_dout |
                   dica_mem_per_dout;
 
@@ -939,17 +939,18 @@ pmem #(`PMEM_MSB, `PMEM_SIZE) pmem_0 (
 // 7)  I/O CELLS
 //=============================================================================
 
+wire [31:0] V_supply;
 
 // Slide Switches (Port 1 inputs)
 //--------------------------------
-IBUF  SW7_PIN        (.O(p3_din[7]),                   .I(SW7));
-IBUF  SW6_PIN        (.O(p3_din[6]),                   .I(SW6));
-IBUF  SW5_PIN        (.O(p3_din[5]),                   .I(SW5));
-IBUF  SW4_PIN        (.O(p3_din[4]),                   .I(SW4));
-IBUF  SW3_PIN        (.O(p3_din[3]),                   .I(SW3));
-IBUF  SW2_PIN        (.O(p3_din[2]),                   .I(SW2));
-IBUF  SW1_PIN        (.O(p3_din[1]),                   .I(SW1));
-IBUF  SW0_PIN        (.O(p3_din[0]),                   .I(SW0));
+IBUF  SW7_PIN        (.O(V_supply[0]),                    .I(SW7));
+IBUF  SW6_PIN        (.O(V_supply[1]),                    .I(SW6));
+IBUF  SW5_PIN        (.O(V_supply[12]),                   .I(SW5));
+IBUF  SW4_PIN        (.O(V_supply[13]),                   .I(SW4));
+IBUF  SW3_PIN        (.O(V_supply[14]),                   .I(SW3));
+IBUF  SW2_PIN        (.O(V_supply[25]),                   .I(SW2));
+IBUF  SW1_PIN        (.O(V_supply[26]),                   .I(SW1));
+IBUF  SW0_PIN        (.O(V_supply[27]),                   .I(SW0));
 
 // LEDs (Port 1 outputs)
 //-----------------------
@@ -965,9 +966,9 @@ OBUF  LED0_PIN       (.I(p3_dout[0] & p3_dout_en[0]),  .O(LED0));
 
 // Push Button Switches
 //----------------------
-IBUF  BTN2_PIN       (.O(),                            .I(BTN2));
-IBUF  BTN1_PIN       (.O(),                            .I(BTN1));
-IBUF  BTN0_PIN       (.O(p1_din[0]),                            .I(BTN0));
+IBUF  BTN2_PIN       (.O(V_supply[8]),                             .I(BTN2));
+IBUF  BTN1_PIN       (.O(V_supply[9]),                             .I(BTN1));
+IBUF  BTN0_PIN       (.O(V_supply[10]),                            .I(BTN0));
 
 // Four-Sigit, Seven-Segment LED Display
 //---------------------------------------

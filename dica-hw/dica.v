@@ -131,7 +131,7 @@ begin
         begin
             dtable_write_reg <= 1'b1;
             ctr <= ctr + 1;
-            V_thresh <= V_thresh + lambda;
+            // V_thresh <= V_thresh + lambda;
         end
         else
             dtable_write_reg <= 1'b0;
@@ -166,6 +166,8 @@ begin
         ctr <= 0;
         V_thresh <= V_MIN;
     end
+    else if((~D_Table[i]) & data_wr)
+        V_thresh <= V_thresh + lambda;
 end
 
 assign dtable_idx = i;

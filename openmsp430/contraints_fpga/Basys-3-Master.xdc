@@ -9,22 +9,22 @@ set_property IOSTANDARD LVCMOS33 [get_ports CLK_100MHz]
 create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_ports CLK_100MHz]
 
 ## Switches
-set_property PACKAGE_PIN V17 [get_ports {SW0}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW0}]
-set_property PACKAGE_PIN V16 [get_ports {SW1}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW1}]
-set_property PACKAGE_PIN W16 [get_ports {SW2}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW2}]
-set_property PACKAGE_PIN W17 [get_ports {SW3}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW3}]
-set_property PACKAGE_PIN W15 [get_ports {SW4}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW4}]
-set_property PACKAGE_PIN V15 [get_ports {SW5}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW5}]
-set_property PACKAGE_PIN W14 [get_ports {SW6}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW6}]
-set_property PACKAGE_PIN W13 [get_ports {SW7}]
-set_property IOSTANDARD LVCMOS33 [get_ports {SW7}]
+set_property PACKAGE_PIN V17 [get_ports SW0]
+set_property IOSTANDARD LVCMOS33 [get_ports SW0]
+set_property PACKAGE_PIN V16 [get_ports SW1]
+set_property IOSTANDARD LVCMOS33 [get_ports SW1]
+set_property PACKAGE_PIN W16 [get_ports SW2]
+set_property IOSTANDARD LVCMOS33 [get_ports SW2]
+set_property PACKAGE_PIN W17 [get_ports SW3]
+set_property IOSTANDARD LVCMOS33 [get_ports SW3]
+set_property PACKAGE_PIN W15 [get_ports SW4]
+set_property IOSTANDARD LVCMOS33 [get_ports SW4]
+set_property PACKAGE_PIN V15 [get_ports SW5]
+set_property IOSTANDARD LVCMOS33 [get_ports SW5]
+set_property PACKAGE_PIN W14 [get_ports SW6]
+set_property IOSTANDARD LVCMOS33 [get_ports SW6]
+set_property PACKAGE_PIN W13 [get_ports SW7]
+set_property IOSTANDARD LVCMOS33 [get_ports SW7]
 #set_property PACKAGE_PIN V2 [get_ports {sw[8]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {sw[8]}]
 #set_property PACKAGE_PIN T3 [get_ports {sw[9]}]
@@ -44,24 +44,24 @@ set_property IOSTANDARD LVCMOS33 [get_ports {SW7}]
 
 
 ## LEDs
-set_property PACKAGE_PIN U16 [get_ports {LED0}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED0}]
-set_property PACKAGE_PIN E19 [get_ports {LED1}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED1}]
-set_property PACKAGE_PIN U19 [get_ports {LED2}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED2}]
-set_property PACKAGE_PIN V19 [get_ports {LED3}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED3}]
-set_property PACKAGE_PIN W18 [get_ports {LED4}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED4}]
-set_property PACKAGE_PIN U15 [get_ports {LED5}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED5}]
-set_property PACKAGE_PIN U14 [get_ports {LED6}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED6}]
-set_property PACKAGE_PIN V14 [get_ports {LED7}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED7}]
-set_property PACKAGE_PIN V13 [get_ports {LED8}]
-set_property IOSTANDARD LVCMOS33 [get_ports {LED8}]
+set_property PACKAGE_PIN U16 [get_ports LED0]
+set_property IOSTANDARD LVCMOS33 [get_ports LED0]
+set_property PACKAGE_PIN E19 [get_ports LED1]
+set_property IOSTANDARD LVCMOS33 [get_ports LED1]
+set_property PACKAGE_PIN U19 [get_ports LED2]
+set_property IOSTANDARD LVCMOS33 [get_ports LED2]
+set_property PACKAGE_PIN V19 [get_ports LED3]
+set_property IOSTANDARD LVCMOS33 [get_ports LED3]
+set_property PACKAGE_PIN W18 [get_ports LED4]
+set_property IOSTANDARD LVCMOS33 [get_ports LED4]
+set_property PACKAGE_PIN U15 [get_ports LED5]
+set_property IOSTANDARD LVCMOS33 [get_ports LED5]
+set_property PACKAGE_PIN U14 [get_ports LED6]
+set_property IOSTANDARD LVCMOS33 [get_ports LED6]
+set_property PACKAGE_PIN V14 [get_ports LED7]
+set_property IOSTANDARD LVCMOS33 [get_ports LED7]
+set_property PACKAGE_PIN V13 [get_ports LED8]
+set_property IOSTANDARD LVCMOS33 [get_ports LED8]
 #set_property PACKAGE_PIN V3 [get_ports {led[9]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {led[9]}]
 #set_property PACKAGE_PIN W3 [get_ports {led[10]}]
@@ -155,8 +155,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports BTN3]
 
 ##Pmod Header JB
 #Sch name = JB1
-set_property PACKAGE_PIN A14 [get_ports {JB1}]
-set_property IOSTANDARD LVCMOS33 [get_ports {JB1}]
 ##Sch name = JB2
 #set_property PACKAGE_PIN A16 [get_ports {JB[1]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JB[1]}]
@@ -183,11 +181,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports {JB1}]
 
 ##Pmod Header JC
 ##Sch name = JC1
-set_property PACKAGE_PIN K17 [get_ports {JC1}]
-set_property IOSTANDARD LVCMOS33 [get_ports {JC1}]
+set_property PACKAGE_PIN K17 [get_ports JC1]
+set_property IOSTANDARD LVCMOS33 [get_ports JC1]
 #Sch name = JC2
-set_property PACKAGE_PIN M18 [get_ports {JC2}]
-set_property IOSTANDARD LVCMOS33 [get_ports {JC2}]
 ##Sch name = JC3
 #set_property PACKAGE_PIN N17 [get_ports {JC3}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JC3}]
@@ -195,8 +191,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports {JC2}]
 #set_property PACKAGE_PIN P18 [get_ports {JC4}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JC4}]
 #Sch name = JC7
-set_property PACKAGE_PIN L17 [get_ports {JC7}]
-set_property IOSTANDARD LVCMOS33 [get_ports {JC7}]
+set_property PACKAGE_PIN L17 [get_ports JC7]
+set_property IOSTANDARD LVCMOS33 [get_ports JC7]
 #Sch name = JC8
 #set_property PACKAGE_PIN M19 [get_ports {JC8}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JC8}]
@@ -269,9 +265,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports {JC7}]
 
 ##USB-RS232 Interface
 set_property PACKAGE_PIN B18 [get_ports UART_RXD]
-	set_property IOSTANDARD LVCMOS33 [get_ports UART_RXD]
+set_property IOSTANDARD LVCMOS33 [get_ports UART_RXD]
 set_property PACKAGE_PIN A18 [get_ports UART_TXD]
-	set_property IOSTANDARD LVCMOS33 [get_ports UART_TXD]
+set_property IOSTANDARD LVCMOS33 [get_ports UART_TXD]
 
 
 ##USB HID (PS/2)
@@ -297,8 +293,6 @@ set_property PACKAGE_PIN A18 [get_ports UART_TXD]
 #set_property PACKAGE_PIN K19 [get_ports QspiCSn]
 #set_property IOSTANDARD LVCMOS33 [get_ports QspiCSn]
 
-set_input_delay -clock [get_clocks sys_clk_pin] -min -add_delay 0.000 [get_ports btnL]
-set_input_delay -clock [get_clocks sys_clk_pin] -max -add_delay 4.000 [get_ports btnL]
 set_output_delay -clock [get_clocks sys_clk_pin] -min -add_delay 0.000 [get_ports SEG_A]
 set_output_delay -clock [get_clocks sys_clk_pin] -max -add_delay 4.000 [get_ports SEG_A]
 set_output_delay -clock [get_clocks sys_clk_pin] -min -add_delay 0.000 [get_ports SEG_D]
@@ -308,10 +302,6 @@ set_output_delay -clock [get_clocks sys_clk_pin] -max -add_delay 4.000 [get_port
 set_output_delay -clock [get_clocks sys_clk_pin] -min -add_delay 0.000 [get_ports SEG_F]
 set_output_delay -clock [get_clocks sys_clk_pin] -max -add_delay 4.000 [get_ports SEG_F]
 
-create_generated_clock -name Q0 -source [get_ports CLK_100MHz] -divide_by 1 [get_pins FDCE_0/Q]
-create_generated_clock -name Q1 -source [get_pins FDCE_0/Q] -divide_by 1 [get_pins FDCE_1/Q]
-create_generated_clock -name Q2 -source [get_pins FDCE_1/Q] -divide_by 1 [get_pins FDCE_2/Q]
-create_generated_clock -name Q3 -source [get_pins FDCE_2/Q] -divide_by 1 [get_pins FDCE_3/Q]
 
 #set_property ALLOW_COMBINATORIAL_LOOPS true [get_nets -of_objects [get_cells dut/mem_backbone_0/fe_mdb_in[15]_INST_0_i_1]]
 #set_property ALLOW_COMBINATORIAL_LOOPS true [get_nets -of_objects [get_cells dut/mem_backbone_0/fe_mdb_in[14]_INST_0]]
@@ -322,3 +312,63 @@ create_generated_clock -name Q3 -source [get_pins FDCE_2/Q] -divide_by 1 [get_pi
 #set_property SEVERITY {Warning}  [get_drc_checks LUTLP-1]
 
 #set_property SEVERITY {Warning} [get_drc_checks NSTD-1]
+
+set_operating_conditions -ambient_temp 65.0
+set_operating_conditions -process maximum
+
+set_operating_conditions -process typical
+set_operating_conditions -ambient_temp 25.0
+
+set_switching_activity -toggle_rate 0.000 -static_probability 0.000 [get_nets {openMSP430_0/clock_module_0/sync_cell_puc/data_sync_reg[1]_0}]
+
+set_operating_conditions -process maximum
+set_operating_conditions -junction_temp 85.0
+set_operating_conditions -ambient_temp 25.0
+set_operating_conditions -junction_temp auto
+set_operating_conditions -grade industrial
+set_operating_conditions -junction_temp 85.0
+set_load 9.000 [all_outputs]
+set_operating_conditions -design_power_budget 2.0
+set_operating_conditions -voltage {vccint 0.950}
+set_operating_conditions -voltage {vccaux 1.710}
+set_operating_conditions -voltage {vcco25 2.380}
+set_operating_conditions -voltage {vcco18 1.710}
+set_operating_conditions -voltage {vcco15 1.430}
+set_operating_conditions -voltage {vcco135 1.300}
+set_operating_conditions -voltage {vcco12 1.140}
+set_operating_conditions -voltage {vccaux_io 1.710}
+set_operating_conditions -voltage {vccbram 0.950}
+set_operating_conditions -voltage {mgtavcc 0.950}
+set_operating_conditions -voltage {mgtavtt 1.140}
+set_operating_conditions -voltage {vccadc 1.710}
+set_operating_conditions -grade commercial
+set_operating_conditions -process typical
+
+set_operating_conditions -grade industrial
+set_operating_conditions -process maximum
+set_operating_conditions -ambient_temp 85.0
+set_load 0.000 [all_outputs]
+set_property LOAD 0 [get_ports JC7]
+set_property LOAD 0 [get_ports LED0]
+set_property LOAD 0 [get_ports LED1]
+set_property LOAD 0 [get_ports LED2]
+set_property LOAD 0 [get_ports LED3]
+set_property LOAD 0 [get_ports LED4]
+set_property LOAD 0 [get_ports LED5]
+set_property LOAD 0 [get_ports LED6]
+set_property LOAD 0 [get_ports LED7]
+set_property LOAD 0 [get_ports LED8]
+set_property LOAD 0 [get_ports SEG_A]
+set_property LOAD 0 [get_ports SEG_AN0]
+set_property LOAD 0 [get_ports SEG_AN1]
+set_property LOAD 0 [get_ports SEG_AN2]
+set_property LOAD 0 [get_ports SEG_AN3]
+set_property LOAD 0 [get_ports SEG_B]
+set_property LOAD 0 [get_ports SEG_C]
+set_property LOAD 0 [get_ports SEG_D]
+set_property LOAD 0 [get_ports SEG_DP]
+set_property LOAD 0 [get_ports SEG_E]
+set_property LOAD 0 [get_ports SEG_F]
+set_property LOAD 0 [get_ports SEG_G]
+set_property LOAD 0 [get_ports UART_TXD]
+set_operating_conditions -junction_temp 25.0
