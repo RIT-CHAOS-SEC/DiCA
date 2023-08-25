@@ -4,6 +4,6 @@ Intermittently powered devices rely on opportunistic energy-harvesting to functi
 
 This paper introduces DiCA, a proposal for a hardware/software co-design to create differential check-points in intermittent devices. DiCA leverages an affordable hardware module that simplifies the check-pointing process, reducing the check-point generation time and energy consumption. This hardware module continuously monitors volatile memory, efficiently tracking modifications and determining optimal check-point times. To minimize energy waste, the module dynamically estimates the energy required to create and store the check-point based on tracked memory modifications, triggering the check-pointing routine optimally via a non-maskable interrupt. Experimental results show the cost-effectiveness and energy efficiency of DiCA, enabling extended application activity cycles in intermittently powered embedded devices
 
-## Paper
+## Paper ([http://arxiv.org/abs/2308.12819](http://arxiv.org/abs/2308.12819))
 
-[Our paper](./dica.pdf) for DiCA was accepted to ICCAD '23
+DiCA was accepted to ICCAD '23
